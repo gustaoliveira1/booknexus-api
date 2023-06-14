@@ -7,8 +7,8 @@ export class CreateBookController {
     private request: FastifyRequest,
   ) { }
 
-  public async handle(): Promise<Book> {
-    const paramsSchema = z.object({
+  public async handle() {
+    const bodySchema = z.object({
       title: z.string(),
       sinopse: z.string(),
       author: z.string(),
@@ -16,7 +16,7 @@ export class CreateBookController {
       publicationYear: z.number(),
     })
 
-    const { title, sinopse, author, genre, publicationYear } = paramsSchema.parse(this.request.body)
+    const { title, sinopse, author, genre, publicationYear } = bodySchema.parse(this.request.body)
 
     const book = new Book({
       title: title,
@@ -26,8 +26,8 @@ export class CreateBookController {
       publicationYear: publicationYear,
     })
 
-    await book.create()
+    const createdBook = await book.create()
 
-    return book
+    return createdBook
   }
 }
