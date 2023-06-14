@@ -1,6 +1,15 @@
 import { v4 } from 'uuid'
 import { prisma } from '../lib/prisma'
 
+interface BookProps {
+  id?: string
+  title: string
+  sinopse: string
+  author: string
+  genre: string
+  publicationYear: number
+}
+
 export class Book {
   public readonly id?: string
   public title: string
@@ -9,8 +18,13 @@ export class Book {
   public genre: string
   public publicationYear: number
 
-  constructor(props: Omit<Book, 'create'>) {
-    Object.assign(this, props)
+  constructor(props: BookProps) {
+    this.id = props.id
+    this.title = props.title
+    this.sinopse = props.sinopse
+    this.author = props.author
+    this.genre = props.genre
+    this.publicationYear = props.publicationYear
 
     if (!this.id) {
       this.id = v4()
