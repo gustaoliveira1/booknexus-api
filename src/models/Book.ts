@@ -31,8 +31,8 @@ export class Book {
     }
   }
 
-  public async create(): Promise<void> {
-    await prisma.book.create({
+  public async create() {
+    const book = await prisma.book.create({
       data: {
         id: this.id,
         title: this.title,
@@ -42,5 +42,24 @@ export class Book {
         publicationYear: this.publicationYear
       }
     })
+
+    return book
+  }
+
+  public async update(updateData: Omit<BookProps, 'id'>) {
+    const book = await prisma.book.update({
+      where: {
+        id: this.id,
+      },
+      data: {
+        title: updateData.title,
+        sinopse: updateData.sinopse,
+        author: updateData.author,
+        genre: updateData.genre,
+        publicationYear: updateData.publicationYear
+      }
+    })
+
+    return book
   }
 }
