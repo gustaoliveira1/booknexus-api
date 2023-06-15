@@ -62,4 +62,12 @@ export class Book {
 
     return book
   }
+
+  public async remove() {
+    await prisma.book.delete({
+      where: {
+        id: this.id,
+      }
+    })
+  }
 }
