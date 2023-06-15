@@ -1,4 +1,4 @@
-import { describe, test, expect, jest } from '@jest/globals'
+import { describe, test, expect } from '@jest/globals'
 import { Book } from '../../src/models/Book'
 
 describe('Book model', () => {
@@ -35,22 +35,5 @@ describe('Book model', () => {
     expect(book.genre).toBe('Comedy')
     expect(book.publicationYear).toBe(2004)
     expect(book.sinopse).toBe('I Dont Know')
-  })
-
-  test('should call "create" method when creating a new book', async () => {
-    const book = new Book({
-      title: 'Pandas are cute',
-      author: 'John Doe',
-      genre: 'Comedy',
-      publicationYear: 2004,
-      sinopse: 'I Dont Know',
-    })
-
-    const mockCreateFunction = jest.fn(async () => { return })
-
-    book.create = mockCreateFunction
-    book.create()
-
-    expect(mockCreateFunction).toHaveBeenCalled()
   })
 })
