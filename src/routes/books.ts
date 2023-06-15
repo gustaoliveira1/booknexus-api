@@ -3,11 +3,19 @@ import { CreateBookController } from '../controllers/book/Create'
 import { UpdateBookController } from '../controllers/book/Update'
 import { GetBookController } from '../controllers/book/Get'
 import { RemoveBookController } from '../controllers/book/Remove'
+import { z } from 'zod'
 
 export const bookRoutes = async (app: FastifyInstance) => {
   app.get('/books', async (request) => {
     const getBookController = new GetBookController(request)
-    const books = request.query
+
+    const querySchema = z.object({
+      title: z.string().optional(),
+    })
+
+    const { title } = querySchema.parse(request.query)
+
+    const books = title
       ? await getBookController.findByName()
       : await getBookController.getAll()
 
