@@ -105,6 +105,7 @@ Example of reponse:
 Return books that match the query
 
 Example of request:
+
 ![Get request with query](./img/query-get-request.png)
 
 Example of reponse:
@@ -125,6 +126,7 @@ Example of reponse:
 Catalog the book in database.
 
 Example of request:
+
 ![Post request](./img/post-request.png)
 
 Example of response:
@@ -143,6 +145,7 @@ Example of response:
 Updates a specific book.
 
 Example of request:
+
 ![Put request](./img/put-request.png)
 
 Example of response:
@@ -161,6 +164,7 @@ Example of response:
 Delete a specific book.
 
 Example of request
+
 ![Delete request](./img/delete-request.png)
 
 This endpoint return 204 status. 
