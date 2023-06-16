@@ -37,7 +37,7 @@ npm run dev
 
 These are the available endpoints:
 
-**GET /books**
+### GET /books
 Returns a list of all cataloged books.
 
 Example of response:
@@ -86,7 +86,7 @@ Example of response:
 ]
 ```
 
-**GET /books/{id}**
+### GET /books/{id}
 Returns a specific book.
 
 Example of reponse:
@@ -101,7 +101,7 @@ Example of reponse:
 }
 ```
 
-**GET /books?title**
+### GET /books?title
 Return books that match the query
 
 Example of request:
@@ -122,7 +122,7 @@ Example of reponse:
 ]
 ```
 
-**POST /books**
+### POST /books
 Catalog the book in database.
 
 Example of request:
@@ -141,7 +141,7 @@ Example of response:
 }
 ```
 
-**PUT /books/{id}**
+## PUT /books/{id}
 Updates a specific book.
 
 Example of request:
@@ -160,7 +160,7 @@ Example of response:
 }
 ```
 
-**DELETE /books/{id}**
+### DELETE /books/{id}
 Delete a specific book.
 
 Example of request
