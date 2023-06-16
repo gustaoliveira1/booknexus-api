@@ -6,7 +6,7 @@ import { RemoveBookController } from '../controllers/book/Remove'
 import { z } from 'zod'
 
 export const bookRoutes = async (app: FastifyInstance) => {
-  app.get('/books', async (request) => {
+  app.get('/books', async (request, response) => {
     const getBookController = new GetBookController(request)
 
     const querySchema = z.object({
@@ -19,6 +19,10 @@ export const bookRoutes = async (app: FastifyInstance) => {
       ? await getBookController.findByName()
       : await getBookController.getAll()
 
+    if (books.length == 0) {
+      return response.status(404).send({ message: 'Error: Could not find books that match' })
+    }
+
     return books
   })
 
@@ -27,7 +31,7 @@ export const bookRoutes = async (app: FastifyInstance) => {
     const book = await getBookController.findById()
 
     if (!book) {
-      return response.send(404)
+      return response.status(404).send({ message: 'Error: Could not find books that match' })
     }
 
     return book
@@ -47,8 +51,10 @@ export const bookRoutes = async (app: FastifyInstance) => {
     return book
   })
 
-  app.delete('/books/:id', async (request) => {
+  app.delete('/books/:id', async (request, response) => {
     const removeBookController = new RemoveBookController(request)
     await removeBookController.handle()
+
+    return response.status(204)
   })
 }
